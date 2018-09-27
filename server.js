@@ -38,11 +38,9 @@ app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/',(req, res)=>{
-    // res.send('hello world');
     var data = {
         pageTitle: 'home',
         welcomeMessage: 'Welcome to home page' ,
-        thisYear: new Date().getFullYear()
     }
     res.render('home.hbs',data);
 });
@@ -51,11 +49,17 @@ app.get('/about',(req, res)=>{
     var myInfo = {
         pageTitle: 'About',
         name: 'steve',
-        occupation: 'software engineer',
-        thisYear: new Date().getFullYear()
+        occupation: 'software engineer'
     };
     res.render('about.hbs', myInfo);
 });
+
+app.get('/portfolio',(req,res)=>{
+    var data = {
+        pageTitle: 'PortFolio'
+    };
+    res.render('portfolio.hbs',data);
+})
 
 app.get('/bad',(req,res)=>{
     var error = {
@@ -63,6 +67,7 @@ app.get('/bad',(req,res)=>{
     };
     res.send(error);
 });
+
 app.listen(port, ()=>{
     console.log(`Server is running on ${port} port`);
 });
